@@ -9,8 +9,6 @@ function generateTarget() {
 }
 targetNum = generateTarget();
 function compareGuesses(userGuess, compGuess, targetNum) {
-    // const technicalLoss = 'You were further, which means you lose, by technicality.';
-    // const technicalWin = 'You were closer, which means you win, by technicality.';
     if(userGuess === targetNum || compGuess === targetNum) 
     {
         console.log('There\'s a winner...');
@@ -88,9 +86,8 @@ function compareGuesses(userGuess, compGuess, targetNum) {
     }
     
 }
+const whoWon = compareGuesses(userGuess, compGuess, targetNum);
 function updateScore(whoWon) {
-    let humanScore = 0;
-    let computerScore = 0;
     if(whoWon === 'human') {
         humanScore++;
     }
