@@ -1,6 +1,7 @@
 let humanScore = 0;
 let computerScore = 0;
 let currentRoundNumber = 1;
+let incrementRound = true;
 
 function generateTarget() {
      secretTargetNum = Math.floor(Math.random() * 10);
@@ -8,59 +9,56 @@ function generateTarget() {
 }
 function compareGuesses(userGuess, compGuess, targetNum) {
     var winner = '';
-    if((userGuess === targetNum.toString()) && compGuess === targetNum) 
-    {
-        console.log(`You both got the number - have a point each.\ncomputer guess: ${compGuess}\nyour guess: ${userGuess}\n\ntarget ${targetNum}`);
-        humanScore++;
-        computerScore++;
-        return "tie";
-    }
-    else if((userGuess === targetNum.toString()) || compGuess === targetNum) 
-    {
-        console.log('There\'s a winner...');
-        if(userGuess === targetNum.toString()) 
+    incrementRound = true;
+    if(userGuess.length < 2 && userGuess >= 0) 
         {
-            return 'human';
+        if((userGuess === targetNum.toString()) && compGuess === targetNum) 
+            {
+                console.log(`You both got the number - have a point each.\ncomputer guess: ${compGuess}\nyour guess: ${userGuess}\n\ntarget ${targetNum}`);
+                humanScore++;
+                computerScore++;
+                return "tie";
+            }
+        else if((userGuess === targetNum.toString()) || compGuess === targetNum) 
+        {
+            console.log('There\'s a winner...');
+            if(userGuess === targetNum.toString()) 
+            {
+                return 'human';
+            }
+            else if(compGuess === targetNum) 
+            {
+                return 'computer';
+            }  
         }
-        else if(compGuess === targetNum) 
+        else if(compGuess > targetNum && userGuess > targetNum) 
         {
-            return 'computer';
-        }  
-    }
-    else if(compGuess > targetNum && userGuess > targetNum) 
-    {
-        console.log(`Your guess: ${userGuess} \nYour opponents guess: ${compGuess}\n\nThe target: ${targetNum}`);
-        winner = getAbsoluteDistance(userGuess - targetNum, compGuess - targetNum);
-        return winner;
-
-
-    }
-    else if(compGuess < targetNum && userGuess < targetNum) 
-    {
-        console.log(`Your guess: ${userGuess} \nYour opponents guess: ${compGuess}\n\nThe target: ${targetNum}`);
-        winner= getAbsoluteDistance(targetNum - userGuess, targetNum - compGuess);
-        return winner;
-
- 
-    }
-    else if (compGuess < targetNum && userGuess > targetNum) 
-    {
-        console.log(`Your guess: ${userGuess} \nYour opponents guess: ${compGuess}\n\nThe target: ${targetNum}`);
-        winner = getAbsoluteDistance(userGuess - targetNum, targetNum - compGuess);
-        return winner;
-
-
-    }
-    else if (compGuess > targetNum && userGuess < targetNum) 
-    {
-        console.log(`Your guess: ${userGuess} \nYour opponents guess: ${compGuess}\n\nThe target: ${targetNum}`);
-        winner = getAbsoluteDistance(targetNum - userGuess, compGuess - targetNum);
-        return winner;
-        
-        
+            console.log(`Your guess: ${userGuess} \nYour opponents guess: ${compGuess}\n\nThe target: ${targetNum}`);
+            winner = getAbsoluteDistance(userGuess - targetNum, compGuess - targetNum);
+            return winner;
+        }
+        else if(compGuess < targetNum && userGuess < targetNum) 
+        {
+            console.log(`Your guess: ${userGuess} \nYour opponents guess: ${compGuess}\n\nThe target: ${targetNum}`);
+            winner= getAbsoluteDistance(targetNum - userGuess, targetNum - compGuess);
+            return winner;
+        }
+        else if (compGuess < targetNum && userGuess > targetNum) 
+        {
+            console.log(`Your guess: ${userGuess} \nYour opponents guess: ${compGuess}\n\nThe target: ${targetNum}`);
+            winner = getAbsoluteDistance(userGuess - targetNum, targetNum - compGuess);
+            return winner;
+        }
+        else if (compGuess > targetNum && userGuess < targetNum) 
+        {
+            console.log(`Your guess: ${userGuess} \nYour opponents guess: ${compGuess}\n\nThe target: ${targetNum}`);
+            winner = getAbsoluteDistance(targetNum - userGuess, compGuess - targetNum);
+            return winner;
+        }
     }
     else {
-        return 'I lose! There\'s a bug in this program! Bah Humbug!';
+        incrementRound = false;
+        return alert('Please select a value that is less than 10 and more than 0!');
     }
     
 }
@@ -80,7 +78,7 @@ function updateScore(winner) {
             return console.log('Ready for another round? Let\'s Go!');
     }
 }
-const advanceRound = () => currentRoundNumber++;
+const advanceRound = () => (incrementRound) ? currentRoundNumber++ : currentRoundNumber;
 
 function getAbsoluteDistance(userDistance, compDistance) 
 {
