@@ -2,14 +2,14 @@ let humanScore = 0;
 let computerScore = 0;
 let currentRoundNumber = 1;
 
-const computerGuess = () => Math.floor(Math.random() * 10);
+//const computerGuess = () => Math.floor(Math.random() * 10);
 // Write your code below:
 function generateTarget() {
      secretTargetNum = Math.floor(Math.random() * 10);
      return secretTargetNum;
 }
 targetNum = generateTarget();
-let compGuess = computerGuess();
+//let compGuess = computerGuess();
 function compareGuesses(userGuess, compGuess, targetNum) {
     if(userGuess === targetNum || compGuess === targetNum) 
     {
@@ -46,16 +46,17 @@ function compareGuesses(userGuess, compGuess, targetNum) {
         var userDistance = targetNum - userGuess;
         var compDistance = targetNum - compGuess;
         console.log(`Your guess: ${userGuess} \nYour opponents guess: ${compGuess}\n\nThe target: ${targetNum}`);
+        console.log(`Your guess was ${userDistance} off.\nYour opponents guess was ${compDistance}\n off the target ${targetNum}`);
         if (compDistance > userDistance) 
-            {
-                
+            {        
                 return 'human';
             }
         else if(userDistance > compDistance)
             {
                 return 'computer';
             }
-        else {
+        else 
+        {
             //window.alert()
             return 'tie';
         }
@@ -73,7 +74,8 @@ function compareGuesses(userGuess, compGuess, targetNum) {
             {
                 return 'computer';
             }
-        else {
+        else 
+        {
             return 'tie';
         }
     }
@@ -91,6 +93,10 @@ function compareGuesses(userGuess, compGuess, targetNum) {
                 {
                     return 'computer';
                 }
+            else 
+            {
+                return 'tie';
+            }
             
         }
     else {
@@ -99,8 +105,9 @@ function compareGuesses(userGuess, compGuess, targetNum) {
     
 }
 //const whoWon = compareGuesses(userGuess, compGuess, targetNum);
-function updateScore(whoWon) {
-    switch(whoWon) {
+function updateScore(winner) {
+    switch(winner) 
+    {
         case 'human':
             humanScore ++;
             break;
