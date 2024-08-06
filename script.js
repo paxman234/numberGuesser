@@ -2,14 +2,10 @@ let humanScore = 0;
 let computerScore = 0;
 let currentRoundNumber = 1;
 
-//const computerGuess = () => Math.floor(Math.random() * 10);
-// Write your code below:
 function generateTarget() {
      secretTargetNum = Math.floor(Math.random() * 10);
      return secretTargetNum;
 }
-//targetNum = generateTarget();
-//let compGuess = computerGuess();
 function compareGuesses(userGuess, compGuess, targetNum) {
     if((userGuess === targetNum.toString()) && compGuess === targetNum) 
     {
@@ -65,7 +61,6 @@ function compareGuesses(userGuess, compGuess, targetNum) {
             }
         else 
         {
-            //window.alert()
             return 'tie';
         }
     }
@@ -112,7 +107,7 @@ function compareGuesses(userGuess, compGuess, targetNum) {
     }
     
 }
-//const whoWon = compareGuesses(userGuess, compGuess, targetNum);
+
 function updateScore(winner) {
     switch(winner) 
     {
@@ -128,4 +123,4 @@ function updateScore(winner) {
             return console.log('Ready for another round? Let\'s Go!');
     }
 }
-const advanceRound = (currentRoundNumber) => currentRoundNumber++;
+const advanceRound = () => currentRoundNumber++;
