@@ -33,11 +33,16 @@ guessButton.addEventListener('click', () => {
   updateScore(humanIsWinner);
 
   // Display the winner
-  if (humanIsWinner) {
+  if (humanIsWinner === 'human') {
     guessButton.innerText = 'You Win!!!!!';
     guessButton.classList.toggle('winning-text')
-  } else {
+  
+  } 
+  else if (humanIsWinner === 'computer'){
     computerWinsDisplay.innerText = 'Computer Wins!!!';
+  }
+  else if (humanIsWinner === 'tie'){
+    targetNumberDisplay.innerText = 'Draw!';
   }
 
   // winnerDisplay.innerText = humanIsWinner ? 'You win!' : 'Computer wins!';

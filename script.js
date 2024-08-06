@@ -11,10 +11,10 @@ function generateTarget() {
 targetNum = generateTarget();
 //let compGuess = computerGuess();
 function compareGuesses(userGuess, compGuess, targetNum) {
-    if(userGuess === targetNum || compGuess === targetNum) 
+    if((userGuess === targetNum.toString()) || (compGuess === targetNum)) 
     {
         console.log('There\'s a winner...');
-        if(userGuess === targetNum) 
+        if(userGuess === targetNum.toString()) 
         {
             return 'human';
         }
