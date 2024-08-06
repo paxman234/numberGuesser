@@ -8,10 +8,18 @@ function generateTarget() {
      secretTargetNum = Math.floor(Math.random() * 10);
      return secretTargetNum;
 }
-targetNum = generateTarget();
+//targetNum = generateTarget();
 //let compGuess = computerGuess();
 function compareGuesses(userGuess, compGuess, targetNum) {
-    if((userGuess === targetNum.toString()) || (compGuess === targetNum)) 
+    if((userGuess === targetNum.toString()) && compGuess === targetNum) 
+    {
+        console.log('You both got the number - have a point each.');
+        console.log(`computer guess: ${compGuess}\nyour guess: ${userGuess}\n\ntarget ${targetNum}`);
+        humanScore++;
+        computerScore++;
+        return "tie";
+    }
+    else if((userGuess === targetNum.toString()) || compGuess === targetNum) 
     {
         console.log('There\'s a winner...');
         if(userGuess === targetNum.toString()) 
