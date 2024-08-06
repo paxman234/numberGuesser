@@ -7,6 +7,7 @@ function generateTarget() {
      return secretTargetNum;
 }
 function compareGuesses(userGuess, compGuess, targetNum) {
+    var winner = '';
     if((userGuess === targetNum.toString()) && compGuess === targetNum) 
     {
         console.log('You both got the number - have a point each.');
@@ -29,77 +30,35 @@ function compareGuesses(userGuess, compGuess, targetNum) {
     }
     else if(compGuess > targetNum && userGuess > targetNum) 
     {
-        var userDistance = userGuess - targetNum;
-        var compDistance = compGuess - targetNum;
         console.log(`Your guess: ${userGuess} \nYour opponents guess: ${compGuess}\n\nThe target: ${targetNum}`);
-        if (compDistance > userDistance) 
-        {
-            return 'human';
-        }
-        else if (userDistance > compDistance)
-        {
-            return 'computer';
-        }
-        else 
-        {
-            return 'tie';
-        }
+        winner = getAbsoluteDistance(userGuess - targetNum, compGuess - targetNum);
+        return winner;
+
+
     }
     else if(compGuess < targetNum && userGuess < targetNum) 
     {
-        var userDistance = targetNum - userGuess;
-        var compDistance = targetNum - compGuess;
         console.log(`Your guess: ${userGuess} \nYour opponents guess: ${compGuess}\n\nThe target: ${targetNum}`);
         console.log(`Your guess was ${userDistance} off.\nYour opponents guess was ${compDistance}\n off the target ${targetNum}`);
-        if (compDistance > userDistance) 
-            {        
-                return 'human';
-            }
-        else if(userDistance > compDistance)
-            {
-                return 'computer';
-            }
-        else 
-        {
-            return 'tie';
-        }
+        winner= getAbsoluteDistance(targetNum - userGuess, targetNum - compGuess);
+        return winner;
+
+ 
     }
     else if (compGuess < targetNum && userGuess > targetNum) 
     {
-        var userDistance = userGuess - targetNum;
-        var compDistance = targetNum - compGuess;
         console.log(`Your guess: ${userGuess} \nYour opponents guess: ${compGuess}\n\nThe target: ${targetNum}`);
-        if (compDistance > userDistance) 
-            {
-                return 'human';
-            }
-        else if (userDistance > compDistance)
-            {
-                return 'computer';
-            }
-        else 
-        {
-            return 'tie';
-        }
+        winner = getAbsoluteDistance(userGuess - targetNum, targetNum - compGuess);
+        return winner;
+
+
     }
     else if (compGuess > targetNum && userGuess < targetNum) 
         {
-            var userDistance = targetNum - userGuess;
-            var compDistance = compGuess - targetNum;
             console.log(`Your guess: ${userGuess} \nYour opponents guess: ${compGuess}\n\nThe target: ${targetNum}`);
-            if (compDistance > userDistance) 
-                {
-                    
-                    return 'human';
-                }
-            else if (userDistance > compDistance)
-                {
-                    return 'computer';
-                }
-            else 
-            {
-                return 'tie';
-            }
+            winner = getAbsoluteDistance(targetNum - userGuess, compGuess - targetNum);
+            return winner;
+            
             
         }
     else {
@@ -127,5 +86,16 @@ const advanceRound = () => currentRoundNumber++;
 
 function getAbsoluteDistance(userDistance, compDistance) 
 {
-    
+    if (compDistance > userDistance) 
+        {
+            return 'human';
+        }
+    else if (userDistance > compDistance)
+        {
+            return 'computer';
+        }
+    else 
+    {
+        return 'tie';
+    }
 }
