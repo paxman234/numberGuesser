@@ -124,3 +124,8 @@ function updateScore(winner) {
     }
 }
 const advanceRound = () => currentRoundNumber++;
+
+function getAbsoluteDistance(userDistance, compDistance) 
+{
+    
+}
